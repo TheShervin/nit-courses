@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>راهنمای انتخاب واحد تحصیلات تکمیلی | دانشگاه صنعتی نوشیروانی بابل</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --primary: #15549a;
+            --primary-dark: #0f3d73;
+            --primary-light: #e8f1fb;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px 14px; min-height: 100vh; }
+        
+        /* استایل کانتینر اصلی */
+        .container { width: 100%; max-width: 500px; background: var(--card-bg); border-radius: 20px; padding: 26px 20px; box-shadow: 0 10px 30px rgba(15, 61, 115, 0.08); text-align: center; align-self: flex-start; }
+        .logo { width: 110px; height: auto; object-fit: contain; margin-bottom: 12px; }
+        h1 { font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 6px; font-weight: 800; }
+        p.subtitle { font-size: 0.88rem; color: var(--muted); margin-bottom: 22px; line-height: 1.6; }
+        
+        /* استایل لیست و دکمه‌ها */
+        .list-group { display: flex; flex-direction: column; gap: 10px; text-align: right; }
+        .btn-item {
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; padding: 14px 16px; background: #f8fafc; border: 1px solid var(--border);
+            border-radius: 12px; font-size: 0.92rem; font-weight: 600; color: var(--text);
+            cursor: pointer; text-decoration: none; transition: all 0.2s ease;
+        }
+        .btn-item:hover, .btn-item:active { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(21, 84, 154, 0.2); }
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px; padding: 8px 16px;
+            background: var(--border); color: #334155; border: none; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        .btn-back:hover { background: #cbd5e1; }
+        .section-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin: 14px 4px 6px; padding-bottom: 4px; border-bottom: 2px solid var(--primary-light); }
+        .badge { font-size: 0.75rem; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 6px; white-space: nowrap; margin-right: 8px; }
+        .btn-item:hover .badge { background: rgba(255,255,255,0.2); color: #fff; }
+        .hidden { display: none !important; }
+
+        /* استایل پاپ‌آپ (Modal) تبریک قبولی */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            padding: 20px; z-index: 1000; opacity: 1; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.fade-out { opacity: 0; pointer-events: none; }
+        .modal-box {
+            width: 100%; max-width: 420px; background: #ffffff; border-radius: 22px;
+            padding: 28px 24px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-top: 6px solid var(--primary);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.85) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-logo { width: 95px; height: auto; margin-bottom: 12px; }
+        .modal-badge {
+            display: inline-block; background: var(--primary-light); color: var(--primary);
+            font-size: 0.8rem; font-weight: 700; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px;
+        }
+        .modal-title { font-size: 1.2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; }
+        .modal-text { font-size: 0.92rem; color: #475569; line-height: 1.8; margin-bottom: 22px; text-align: center; }
+        .modal-btn {
+            width: 100%; padding: 14px; background: var(--primary); color: #ffffff;
+            border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700;
+            cursor: pointer; transition: background 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 6px 16px rgba(21, 84, 154, 0.25);
+        }
+        .modal-btn:hover { background: var(--primary-dark); }
+        .modal-btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+
+<!-- پاپ‌آپ تبریک قبولی -->
+<div id="welcome-modal" class="modal-overlay">
+    <div class="modal-box">
+        <img src="logo.png" alt="دانشگاه صنعتی نوشیروانی بابل" class="modal-logo" onerror="this.style.display='none'">
+        <div><span class="modal-badge">🎓 ورودی‌های جدید تحصیلات تکمیلی</span></div>
+        <h2 class="modal-title">قبولی شما را تبریک می‌گوییم!</h2>
+        <p class="modal-text">
+            دانشجوی عزیز، ورود شما را به جمع پژوهشگران و خانواده بزرگ <strong>دانشگاه صنعتی نوشیروانی بابل</strong> صمیمانه تبریک عرض می‌نماییم.<br>
+            با آرزوی موفقیت و درخشش در این مسیر علمی، جهت دریافت چارت و فایل راهنمای انتخاب واحد رشته و گرایش خود روی دکمه زیر کلیک کنید.
+        </p>
+        <button class="modal-btn" onclick="closeModal()">مشاهده راهنمای انتخاب واحد</button>
+    </div>
+</div>
+
+<!-- صفحه اصلی انتخاب رشته و گرایش -->
+<div class="container">
+    <img src="logo.png" alt="دانشگاه صنعتی نوشیروانی بابل" class="logo" onerror="this.style.display='none'">
+    <h1>راهنمای انتخاب واحد تحصیلات تکمیلی</h1>
+    <p class="subtitle" id="page-subtitle">دانشجوی گرامی، لطفاً دانشکده یا گروه آموزشی خود را انتخاب نمایید:</p>
+
+    <div id="majors-view" class="list-group"></div>
+
+    <div id="tracks-view" class="hidden">
+        <button class="btn-back" onclick="showMajors()">→ بازگشت به لیست رشته‌ها</button>
+        <div id="tracks-list" class="list-group"></div>
+    </div>
+</div>
+
+<script>
+    function closeModal() {
+        const modal = document.getElementById('welcome-modal');
+        modal.classList.add('fade-out');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+
+    const departmentsData = [
+        {
+            major: "مهندسی مکانیک",
+            badge: "۴ گرایش",
+            groups: [
+                {
+                    groupTitle: "گرایش تبدیل انرژی (Energy Conversion)",
+                    files: [
+                        { name: "برنامه درسی دوره کارشناسی ارشد (PDF)", path: "Mechanics/Energy conversion/2-دوره کارشناسی ارشد.pdf", type: "PDF" },
+                        { name: "برنامه درسی دوره کارشناسی ارشد (Word)", path: "Mechanics/Energy conversion/دوره کارشناسی ارشد(1).docx", type: "Word" },
+                        { name: "برنامه درسی دوره دکتری (PDF)", path: "Mechanics/Energy conversion/3-دوره دکتری.pdf", type: "PDF" },
+                        { name: "برنامه درسی دوره دکتری (Word)", path: "Mechanics/Energy conversion/دوره دکتری(1).docx", type: "Word" },
+                        { name: "چارت درسی مصوب مقاطع تحصیلات تکمیلی", path: "Mechanics/Energy conversion/چارت_درسی_هر_رشته_براساس_برنامه_درسی_مصوب_در_مقاطع_تحصیلات_تکمیلی.xlsx", type: "Excel" }
+                    ]
+                },
+                {
+                    groupTitle: "گرایش مکانیک جامدات و دینامیک (Solid Mechanics)",
+                    files: [
+                        { name: "ارشد مکانیک - گرایش مکانیک جامدات", path: "Mechanics/Solid Mechanics/ارشد مکانیک- گرایش مکانیک جامدات.xlsx", type: "Excel" },
+                        { name: "ارشد مکانیک - گرایش دینامیک، ارتعاشات و کنترل", path: "Mechanics/Solid Mechanics/ارشد_مکانیک_گرایش_دینامیک،_ارتعاشات_و_کنترل.xlsx", type: "Excel" },
+                        { name: "برنامه درسی دکترای مکانیک", path: "Mechanics/Solid Mechanics/دکتراي مکانيک.xlsx", type: "Excel" }
+                    ]
+                },
+                {
+                    groupTitle: "گرایش ساخت و تولید (Manufacturing)",
+                    files: [
+                        { name: "برنامه درسی کارشناسی ارشد (MSc)", path: "Mechanics/Manufacturing/MSc.pdf", type: "PDF" },
+                        { name: "برنامه درسی دکتری (PhD)", path: "Mechanics/Manufacturing/PhD.pdf", type: "PDF" },
+                        { name: "چارت انتخاب واحد ساخت و تولید", path: "Mechanics/Manufacturing/ساخت و تولید.xlsx", type: "Excel" }
+                    ]
+                },
+                {
+                    groupTitle: "مهندسی دریا",
+                    files: [
+                        { name: "چارت انتخاب واحد مهندسی دریا", path: "Mechanics/مهندسی دریا.xlsx", type: "Excel" }
+                    ]
+                }
+            ]
+        },
+        {
+            major: "مهندسی برق و کامپیوتر",
+            badge: "۶ گرایش",
+            groups: [
+                {
+                    groupTitle: "گرایش‌های کارشناسی ارشد برق و کامپیوتر",
+                    files: [
+                        { name: "مهندسی برق - گرایش الکترونیک", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد الکترونیک 1405.pdf", type: "PDF" },
+                        { name: "مهندسی برق - گرایش بیوالکتریک", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد بیوالکتریک 1405.pdf", type: "PDF" },
+                        { name: "مهندسی برق - گرایش قدرت", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد قدرت 1405.pdf", type: "PDF" },
+                        { name: "مهندسی برق - گرایش کنترل", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد کنترل 1405.pdf", type: "PDF" },
+                        { name: "مهندسی برق - گرایش مخابرات", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد مخابرات 1405.pdf", type: "PDF" },
+                        { name: "مهندسی کامپیوتر", path: "Electric and Computer/راهنمای اخذ واحد ک ارشد کامپیوتر 1405.pdf", type: "PDF" }
+                    ]
+                }
+            ]
+        },
+        {
+            major: "مهندسی عمران و معماری",
+            badge: "۶ گرایش",
+            groups: [
+                {
+                    groupTitle: "گرایش‌های مهندسی عمران و معماری",
+                    files: [
+                        { name: "گرایش سازه و زلزله", path: "Civil/سازه-زلزله.pdf", type: "PDF" },
+                        { name: "گرایش ژئوتکنیک", path: "Civil/ژئوتکنیک.pdf", type: "PDF" },
+                        { name: "گرایش راه و ترابری", path: "Civil/راه و ترابری.docx", type: "Word" },
+                        { name: "گرایش محیط زیست", path: "Civil/محیط زیست.jpeg", type: "تصویر" },
+                        { name: "گرایش نقشه‌برداری", path: "Civil/نقشه برداری.docx", type: "Word" },
+                        { name: "مهندسی معماری - گرایش علوم ساختمان", path: "Civil/برنامه معماری گرایش علوم ساختمان.docx", type: "Word" }
+                    ]
+                }
+            ]
+        },
+        {
+            major: "مهندسی مواد و صنایع",
+            badge: "فایل جامع",
+            groups: [
+                {
+                    groupTitle: "برنامه درسی مهندسی مواد و صنایع",
+                    files: [
+                        { name: "دانلود جدول انتخاب واحد مواد و صنایع", path: "Materials&Industrial Eng. (3).xlsx", type: "Excel" }
+                    ]
+                }
+            ]
+        },
+        {
+            major: "دانشکده علوم پایه (فیزیک، ریاضی، شیمی)",
+            badge: "۳ گروه",
+            groups: [
+                {
+                    groupTitle: "گروه‌های آموزشی علوم پایه",
+                    files: [
+                        { name: "چارت درسی گروه فیزیک (تحصیلات تکمیلی)", path: "Basic science/چارت درسی گروه فیزیک مقاطع تحصیلات تکمیلی.xlsx", type: "Excel" },
+                        { name: "دروس تحصیلات تکمیلی گروه ریاضی (ورودی ۴۰۵۱)", path: "Basic science/دروس تحصیلات تکمیلی ریاضی 4051 - ورودی جدید (1).docx", type: "Word" },
+                        { name: "دروس کارشناسی ارشد گروه شیمی (ورودی ۴۰۵۱)", path: "Basic science/دروس کارشناسی ارشد گروه شیمی 4051.docx", type: "Word" }
+                    ]
+                }
+            ]
+        },
+        {
+            major: "مهندسی شیمی / راهنمای تکمیلی",
+            badge: "۱ فایل",
+            groups: [
+                {
+                    groupTitle: "فایل راهنمای انتخاب واحد",
+                    files: [
+                        { name: "مشاهده و دانلود راهنمای انتخاب واحد", path: "انتخاب واحد 3.jpg", type: "تصویر" }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    const majorsView = document.getElementById('majors-view');
+    const tracksView = document.getElementById('tracks-view');
+    const tracksList = document.getElementById('tracks-list');
+    const subtitle = document.getElementById('page-subtitle');
+
+    function init() {
+        majorsView.innerHTML = '';
+        departmentsData.forEach((dept, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-item';
+            btn.innerHTML = `<span>${dept.major}</span><span class="badge">${dept.badge}</span>`;
+            btn.onclick = () => showTracks(index);
+            majorsView.appendChild(btn);
+        });
+    }
+
+    function showTracks(index) {
+        const dept = departmentsData[index];
+        subtitle.innerText = `بخش «${dept.major}» — روی گرایش مورد نظر جهت دریافت فایل کلیک کنید:`;
+        majorsView.classList.add('hidden');
+        tracksView.classList.remove('hidden');
+        tracksList.innerHTML = '';
+
+        dept.groups.forEach(group => {
+            const title = document.createElement('div');
+            title.className = 'section-title';
+            title.innerText = group.groupTitle;
+            tracksList.appendChild(title);
+
+            group.files.forEach(file => {
+                const link = document.createElement('a');
+                link.className = 'btn-item';
+                link.href = encodeURI(file.path);
+                link.setAttribute('download', '');
+                link.innerHTML = `<span>${file.name}</span><span class="badge">دانلود ${file.type} ⬇</span>`;
+                tracksList.appendChild(link);
+            });
+        });
+    }
+
+    function showMajors() {
+        subtitle.innerText = 'دانشجوی گرامی، لطفاً دانشکده یا گروه آموزشی خود را انتخاب نمایید:';
+        tracksView.classList.add('hidden');
+        majorsView.classList.remove('hidden');
+    }
+
+    init();
+</script>
+
+</body>
+</html>
