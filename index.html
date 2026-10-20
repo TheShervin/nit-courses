@@ -269,4 +269,37 @@
     }
 
     function showTracks(index) {
-        const
+        const dept = departmentsData[index];
+        subtitle.innerText = `بخش «${dept.major}» — روی گرایش مورد نظر جهت دریافت فایل کلیک کنید:`;
+        majorsView.classList.add('hidden');
+        tracksView.classList.remove('hidden');
+        tracksList.innerHTML = '';
+
+        dept.groups.forEach(group => {
+            const title = document.createElement('div');
+            title.className = 'section-title';
+            title.innerText = group.groupTitle;
+            tracksList.appendChild(title);
+
+            group.files.forEach(file => {
+                const link = document.createElement('a');
+                link.className = 'btn-item';
+                link.href = encodeURI(file.path);
+                link.setAttribute('download', '');
+                link.innerHTML = `<span>${file.name}</span><span class="badge">دانلود ${file.type} ⬇</span>`;
+                tracksList.appendChild(link);
+            });
+        });
+    }
+
+    function showMajors() {
+        subtitle.innerText = 'دانشجوی گرامی، لطفاً دانشکده یا گروه آموزشی خود را انتخاب نمایید:';
+        tracksView.classList.add('hidden');
+        majorsView.classList.remove('hidden');
+    }
+
+    init();
+</script>
+
+</body>
+</html>
